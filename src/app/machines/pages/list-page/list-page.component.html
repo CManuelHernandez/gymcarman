@@ -1,1 +1,24 @@
-<p>list-page works!</p>
+<div class="card-container">
+  <p-card *ngFor="let machine of machinesMock" class="card">
+    <ng-template pTemplate="header">
+      <img
+        alt="Card"
+        src="https://primefaces.org/cdn/primeng/images/card-ng.jpg"
+      />
+    </ng-template>
+    <ng-template pTemplate="title">{{
+      machine.exercise | uppercase
+    }}</ng-template>
+    <p>Ultima sesión: {{ machine.lastSeason }}</p>
+    <p>Peso: {{ machine.weight }}</p>
+    <p>Series: {{ machine.series }}</p>
+    <p>Repetición: {{ machine.repetitions }}</p>
+    <p>Descanso: {{ machine.restTime }}</p>
+    <p>Feedback: {{ machine.feedback }}</p>
+    <ng-template pTemplate="footer">
+      <div class="footer-container">
+        <p-button label="Actualizar" class="w-full" styleClass="w-full" />
+      </div>
+    </ng-template>
+  </p-card>
+</div>

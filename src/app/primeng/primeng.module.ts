@@ -15,6 +15,7 @@ import { ConfirmationService } from 'primeng/api';
 import { SidebarModule } from 'primeng/sidebar';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DialogModule } from 'primeng/dialog';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
   declarations: [],
@@ -33,6 +34,7 @@ import { DialogModule } from 'primeng/dialog';
     SidebarModule,
     InputSwitchModule,
     DialogModule,
+    FieldsetModule,
   ],
   providers: [MessageService, ConfirmationService],
 })
