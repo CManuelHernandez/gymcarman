@@ -1,2 +1,12 @@
-<p>layout-page works!</p>
+<div class="button-container">
+  <p-button
+    label="Sign out"
+    icon="pi pi-sign-in"
+    severity="danger"
+    [rounded]="true"
+    [outlined]="true"
+    [raised]="true"
+    (onClick)="logOut()"
+  ></p-button>
+</div>
 <router-outlet></router-outlet>
