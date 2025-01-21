@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { machinesMock } from '../list-page/machinesMock';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-machine',
@@ -10,25 +11,56 @@ import { machinesMock } from '../list-page/machinesMock';
 export class EditMachineComponent implements OnInit {
   machineId!: number;
   machine: any;
-  location: any;
+  machineForm!: FormGroup;
 
-  constructor(private route: ActivatedRoute) {}
+  seasonOptions = ['2021-01-01', '2021-02-01', '2021-03-01', '2021-04-01'];
+  weightOptions = [
+    5, 12.5, 20.0, 27.5, 35.0, 42.5, 50.0, 57.5, 65.0, 72.5, 80.0, 87.5, 95.0,
+    102.5, 110.0, 117.5, 125.0, 132.5, 140.0, 147.5, 155.0, 162.5, 170.0, 177.5,
+    185.0, 192.5,
+  ];
+  seriesOptions = [1, 2, 3, 4, 5];
+  repetitionOptions = [5, 10, 15, 20, 25, 30];
+  restOptions = [30, 60, 90, 120];
+  feedbackOptions = ['bien', 'mal', 'regular', 'excelente'];
+
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    // Obtener el id de la máquina de la URL
     this.route.params.subscribe((params) => {
-      this.machineId = +params['id']; // Obtiene el id como número
+      this.machineId = +params['id'];
       this.loadMachineData();
     });
   }
 
   loadMachineData() {
-    // Cargar la máquina desde el mock de datos usando el id
     this.machine = machinesMock.find((m) => m.id === this.machineId);
-    // Si la máquina no se encuentra, puedes manejar el caso aquí, por ejemplo:
-    if (!this.machine) {
-      // Manejar el caso cuando no se encuentra la máquina
+    if (this.machine) {
+      this.createForm();
+    } else {
       console.error('Máquina no encontrada');
+    }
+  }
+
+  createForm() {
+    this.machineForm = this.fb.group({
+      lastSeason: [this.machine.lastSeason, Validators.required],
+      weight: [this.machine.weight, Validators.required],
+      series: [this.machine.series, Validators.required],
+      repetitions: [this.machine.repetitions, Validators.required],
+      restTime: [this.machine.restTime, Validators.required],
+      feedback: [this.machine.feedback, Validators.required],
+    });
+  }
+
+  onSubmit() {
+    if (this.machineForm.valid) {
+      console.log('Formulario enviado', this.machineForm.value);
+      this.router.navigate(['/machines/list']);
     }
   }
 }

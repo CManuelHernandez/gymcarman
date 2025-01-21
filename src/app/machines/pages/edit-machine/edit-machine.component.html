@@ -1,35 +1,83 @@
-<div class="card-container">
-  <p-card class="card">
-    <ng-template pTemplate="header">
-      <img
-        alt="Card"
-        src="https://primefaces.org/cdn/primeng/images/card-ng.jpg"
-      />
-    </ng-template>
-    <ng-template pTemplate="title">{{
-      machine.exercise | uppercase
-    }}</ng-template>
-    <p>Ultima sesión: {{ machine.lastSeason }}</p>
-    <p>Peso: {{ machine.weight }}</p>
-    <p>Series: {{ machine.series }}</p>
-    <p>Repetición: {{ machine.repetitions }}</p>
-    <p>Descanso: {{ machine.restTime }}</p>
-    <p>Feedback: {{ machine.feedback }}</p>
-    <ng-template pTemplate="footer">
-      <div class="footer-container">
-        <p-button
-          label="Volver"
-          [routerLink]="['/machines/list']"
-          class="w-full"
-          styleClass="w-full"
+<form [formGroup]="machineForm" (ngSubmit)="onSubmit()">
+  <div class="card-container">
+    <p-card class="card">
+      <ng-template pTemplate="header">
+        <img
+          alt="Card"
+          src="https://primefaces.org/cdn/primeng/images/card-ng.jpg"
         />
-        <p-button
-          label="Actualizar"
-          [routerLink]="['/machines/list', machine.id]"
-          class="w-full"
-          styleClass="w-full"
-        />
-      </div>
-    </ng-template>
-  </p-card>
-</div>
+      </ng-template>
+      <ng-template pTemplate="title">{{
+        machine.exercise | uppercase
+      }}</ng-template>
+
+      <p>Ultima sesión: {{ machine.lastSeason }}</p>
+
+      <p>
+        <label for="weight">Peso:</label>
+        <select formControlName="weight" class="w-full">
+          <option *ngFor="let weight of weightOptions" [value]="weight">
+            {{ weight }} kg
+          </option>
+        </select>
+      </p>
+
+      <p>
+        <label for="series">Series:</label>
+        <select formControlName="series" class="w-full">
+          <option *ngFor="let series of seriesOptions" [value]="series">
+            {{ series }}
+          </option>
+        </select>
+      </p>
+
+      <p>
+        <label for="repetitions">Repeticiones:</label>
+        <select formControlName="repetitions" class="w-full">
+          <option
+            *ngFor="let repetition of repetitionOptions"
+            [value]="repetition"
+          >
+            {{ repetition }}
+          </option>
+        </select>
+      </p>
+
+      <p>
+        <label for="restTime">Descanso:</label>
+        <select formControlName="restTime" class="w-full">
+          <option *ngFor="let rest of restOptions" [value]="rest">
+            {{ rest }} seg
+          </option>
+        </select>
+      </p>
+
+      <p>
+        <label for="feedback">Feedback:</label>
+        <select formControlName="feedback" class="w-full">
+          <option *ngFor="let feedback of feedbackOptions" [value]="feedback">
+            {{ feedback }}
+          </option>
+        </select>
+      </p>
+
+      <ng-template pTemplate="footer">
+        <div class="footer-container">
+          <p-button
+            label="Volver"
+            [routerLink]="['/machines/list']"
+            class="w-full"
+            styleClass="w-full"
+          />
+          <p-button
+            label="Actualizar"
+            type="submit"
+            [disabled]="machineForm.invalid"
+            class="w-full"
+            styleClass="w-full"
+          />
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</form>
