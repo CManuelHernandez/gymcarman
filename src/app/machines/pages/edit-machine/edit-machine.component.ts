@@ -62,30 +62,36 @@ export class EditMachineComponent implements OnInit {
       repetitions: [this.machine.repetitions, Validators.required],
       restTime: [this.machine.restTime, Validators.required],
       feedback: [this.machine.feedback, Validators.required],
+      image: [{ value: this.machine.image, disabled: true }],
     });
   }
 
   onSubmit() {
     if (this.machineForm.valid) {
+      const currentDate = new Date();
+      const formattedDate = currentDate.toLocaleDateString('es-ES');
+
       const updatedMachine = {
-        id: this.machineId,
+        ...this.machine,
         ...this.machineForm.value,
+        lastSeason: formattedDate,
       };
 
       const localMachines = JSON.parse(
         localStorage.getItem('machines') || '[]'
       );
-      const index = localMachines.findIndex(
-        (machine: any) => machine.id === this.machineId
+      const updatedMachines = localMachines.filter(
+        (m: any) => m.id !== this.machineId
       );
-      if (index !== -1) {
-        localMachines[index] = updatedMachine;
-      } else {
-        localMachines.push(updatedMachine);
-      }
-      localStorage.setItem('machines', JSON.stringify(localMachines));
+      updatedMachines.push(updatedMachine);
 
-      console.log('Formulario enviado', this.machineForm.value);
+      localStorage.setItem('machines', JSON.stringify(updatedMachines));
+      console.log(
+        'Máquina actualizada y guardada en Local Storage:',
+        updatedMachine
+      );
+
+      // Redirige a la lista de máquinas
       this.router.navigate(['/machines/list']);
     }
   }

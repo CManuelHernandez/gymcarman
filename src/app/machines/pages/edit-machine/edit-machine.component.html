@@ -2,16 +2,13 @@
   <div class="card-container">
     <p-card class="card">
       <ng-template pTemplate="header">
-        <img
-          alt="Card"
-          src="https://primefaces.org/cdn/primeng/images/card-ng.jpg"
-        />
+        <img alt="Card" [src]="machine.image" />
       </ng-template>
       <ng-template pTemplate="title">{{
         machine.exercise | uppercase
       }}</ng-template>
 
-      <p>Ultima sesión: {{ machine.lastSeason }}</p>
+      <p>Última sesión: {{ machine.lastSeason }}</p>
 
       <div formGroupName="weight">
         <p>
