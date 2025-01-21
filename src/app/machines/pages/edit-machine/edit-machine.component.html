@@ -8,7 +8,7 @@
         machine.exercise | uppercase
       }}</ng-template>
 
-      <p>Última sesión: {{ machine.lastSeason }}</p>
+      <p>Última sesión: {{ machine.machineRutineData.lastSeason }}</p>
 
       <div formGroupName="weight">
         <p>
@@ -16,8 +16,7 @@
           <p-dropdown
             formControlName="mainWeight"
             [options]="mainWeightOptions"
-          >
-          </p-dropdown>
+          ></p-dropdown>
         </p>
 
         <p>
@@ -25,33 +24,40 @@
           <p-dropdown
             formControlName="extraWeight"
             [options]="extraWeightOptions"
-          >
-          </p-dropdown>
+          ></p-dropdown>
         </p>
       </div>
 
       <p>
         <label for="series">Series:</label>
-        <p-dropdown formControlName="series" [options]="seriesOptions">
-        </p-dropdown>
+        <p-dropdown
+          formControlName="series"
+          [options]="seriesOptions"
+        ></p-dropdown>
       </p>
 
       <p>
         <label for="repetitions">Repeticiones:</label>
-        <p-dropdown formControlName="repetitions" [options]="repetitionOptions">
-        </p-dropdown>
+        <p-dropdown
+          formControlName="repetitions"
+          [options]="repetitionOptions"
+        ></p-dropdown>
       </p>
 
       <p>
         <label for="restTime">Descanso:</label>
-        <p-dropdown formControlName="restTime" [options]="restOptions">
-        </p-dropdown>
+        <p-dropdown
+          formControlName="restTime"
+          [options]="restOptions"
+        ></p-dropdown>
       </p>
 
       <p>
         <label for="feedback">Feedback:</label>
-        <p-dropdown formControlName="feedback" [options]="feedbackOptions">
-        </p-dropdown>
+        <p-dropdown
+          formControlName="feedback"
+          [options]="feedbackOptions"
+        ></p-dropdown>
       </p>
 
       <ng-template pTemplate="footer">

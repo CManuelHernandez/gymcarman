@@ -6,16 +6,22 @@
     <ng-template pTemplate="title">{{
       machine.exercise | uppercase
     }}</ng-template>
-    <p>Última sesión: {{ machine.lastSeason }}</p>
-    <p>Peso: {{ machine.weight.mainWeight + machine.weight.extraWeight }}</p>
-    <p>Series: {{ machine.series }}</p>
-    <p>Repetición: {{ machine.repetitions }}</p>
-    <p>Descanso: {{ machine.restTime }}</p>
-    <p>Feedback: {{ machine.feedback }}</p>
+    <p>Última sesión: {{ machine.machineRutineData.lastSeason }}</p>
+    <p>
+      Peso:
+      {{
+        machine.machineRutineData.weight.mainWeight +
+          machine.machineRutineData.weight.extraWeight
+      }}
+    </p>
+    <p>Series: {{ machine.machineRutineData.series }}</p>
+    <p>Repetición: {{ machine.machineRutineData.repetitions }}</p>
+    <p>Descanso: {{ machine.machineRutineData.restTime }}</p>
+    <p>Feedback: {{ machine.machineRutineData.feedback }}</p>
     <ng-template pTemplate="footer">
       <div class="footer-container">
         <p-button
-          label="Actualizar"
+          label="Actualizar rutina"
           [routerLink]="['/machines/edit', machine.id]"
           class="w-full"
           styleClass="w-full"

@@ -53,15 +53,27 @@ export class EditMachineComponent implements OnInit {
 
   createForm() {
     this.machineForm = this.fb.group({
-      lastSeason: [this.machine.lastSeason, Validators.required],
+      lastSeason: [
+        this.machine.machineRutineData.lastSeason,
+        Validators.required,
+      ],
       weight: this.fb.group({
-        mainWeight: [this.machine.weight.mainWeight, Validators.required],
-        extraWeight: [this.machine.weight.extraWeight, Validators.required],
+        mainWeight: [
+          this.machine.machineRutineData.weight.mainWeight,
+          Validators.required,
+        ],
+        extraWeight: [
+          this.machine.machineRutineData.weight.extraWeight,
+          Validators.required,
+        ],
       }),
-      series: [this.machine.series, Validators.required],
-      repetitions: [this.machine.repetitions, Validators.required],
-      restTime: [this.machine.restTime, Validators.required],
-      feedback: [this.machine.feedback, Validators.required],
+      series: [this.machine.machineRutineData.series, Validators.required],
+      repetitions: [
+        this.machine.machineRutineData.repetitions,
+        Validators.required,
+      ],
+      restTime: [this.machine.machineRutineData.restTime, Validators.required],
+      feedback: [this.machine.machineRutineData.feedback, Validators.required],
       image: [{ value: this.machine.image, disabled: true }],
     });
   }
@@ -73,8 +85,11 @@ export class EditMachineComponent implements OnInit {
 
       const updatedMachine = {
         ...this.machine,
-        ...this.machineForm.value,
-        lastSeason: formattedDate,
+        machineRutineData: {
+          ...this.machine.machineRutineData,
+          ...this.machineForm.value,
+          lastSeason: formattedDate,
+        },
       };
 
       const localMachines = JSON.parse(
