@@ -13,52 +13,48 @@
 
       <p>Ultima sesión: {{ machine.lastSeason }}</p>
 
-      <p>
-        <label for="weight">Peso:</label>
-        <select formControlName="weight" class="w-full">
-          <option *ngFor="let weight of weightOptions" [value]="weight">
-            {{ weight }} kg
-          </option>
-        </select>
-      </p>
+      <div formGroupName="weight">
+        <p>
+          <label for="mainWeight">Peso principal:</label>
+          <p-dropdown
+            formControlName="mainWeight"
+            [options]="mainWeightOptions"
+          >
+          </p-dropdown>
+        </p>
+
+        <p>
+          <label for="extraWeight">Peso adicional:</label>
+          <p-dropdown
+            formControlName="extraWeight"
+            [options]="extraWeightOptions"
+          >
+          </p-dropdown>
+        </p>
+      </div>
 
       <p>
         <label for="series">Series:</label>
-        <select formControlName="series" class="w-full">
-          <option *ngFor="let series of seriesOptions" [value]="series">
-            {{ series }}
-          </option>
-        </select>
+        <p-dropdown formControlName="series" [options]="seriesOptions">
+        </p-dropdown>
       </p>
 
       <p>
         <label for="repetitions">Repeticiones:</label>
-        <select formControlName="repetitions" class="w-full">
-          <option
-            *ngFor="let repetition of repetitionOptions"
-            [value]="repetition"
-          >
-            {{ repetition }}
-          </option>
-        </select>
+        <p-dropdown formControlName="repetitions" [options]="repetitionOptions">
+        </p-dropdown>
       </p>
 
       <p>
         <label for="restTime">Descanso:</label>
-        <select formControlName="restTime" class="w-full">
-          <option *ngFor="let rest of restOptions" [value]="rest">
-            {{ rest }} seg
-          </option>
-        </select>
+        <p-dropdown formControlName="restTime" [options]="restOptions">
+        </p-dropdown>
       </p>
 
       <p>
         <label for="feedback">Feedback:</label>
-        <select formControlName="feedback" class="w-full">
-          <option *ngFor="let feedback of feedbackOptions" [value]="feedback">
-            {{ feedback }}
-          </option>
-        </select>
+        <p-dropdown formControlName="feedback" [options]="feedbackOptions">
+        </p-dropdown>
       </p>
 
       <ng-template pTemplate="footer">

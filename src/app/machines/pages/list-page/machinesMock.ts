@@ -4,7 +4,10 @@ export const machinesMock = [
     exercise: 'press de pecho',
     machineType: 'black',
     lastSeason: '2021-01-01',
-    weight: 35,
+    weight: {
+      mainWeight: 42.5,
+      extraWeight: 2.5,
+    },
     repetitions: 10,
     series: 3,
     restTime: 60,
@@ -15,7 +18,10 @@ export const machinesMock = [
     exercise: 'remo',
     machineType: 'black',
     lastSeason: '2021-01-01',
-    weight: 42.5,
+    weight: {
+      mainWeight: 42.5,
+      extraWeight: 0,
+    },
     repetitions: 10,
     series: 3,
     restTime: 60,
