@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { NewMachineComponent } from './pages/new-machine/new-machine.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
+import { EditMachineComponent } from './pages/edit-machine/edit-machine.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'edit/:id',
-        component: NewMachineComponent,
+        component: EditMachineComponent,
       },
       {
         path: 'list',

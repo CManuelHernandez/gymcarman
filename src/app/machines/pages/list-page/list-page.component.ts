@@ -8,4 +8,8 @@ import { machinesMock } from './machinesMock';
 })
 export class ListPageComponent {
   machinesMock = machinesMock;
+
+  test(machine: any) {
+    console.log(machine);
+  }
 }

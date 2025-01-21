@@ -1,5 +1,5 @@
 <div class="card-container">
-  <p-card *ngFor="let machine of machinesMock" class="card">
+  <p-card class="card">
     <ng-template pTemplate="header">
       <img
         alt="Card"
@@ -18,8 +18,14 @@
     <ng-template pTemplate="footer">
       <div class="footer-container">
         <p-button
+          label="Volver"
+          [routerLink]="['/machines/list']"
+          class="w-full"
+          styleClass="w-full"
+        />
+        <p-button
           label="Actualizar"
-          [routerLink]="['/machines/edit', machine.id]"
+          [routerLink]="['/machines/list', machine.id]"
           class="w-full"
           styleClass="w-full"
         />
