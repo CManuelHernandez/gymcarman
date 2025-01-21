@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { machinesMock } from './machinesMock';
 
 @Component({
@@ -6,8 +6,26 @@ import { machinesMock } from './machinesMock';
   templateUrl: './list-page.component.html',
   styleUrl: './list-page.component.scss',
 })
-export class ListPageComponent {
-  machinesMock = machinesMock;
+export class ListPageComponent implements OnInit {
+  machines: any[] = [];
+
+  ngOnInit() {
+    this.loadMachines();
+  }
+
+  loadMachines() {
+    const localMachines = JSON.parse(localStorage.getItem('machines') || '[]');
+    if (localMachines.length > 0) {
+      this.machines = machinesMock.map((mockMachine) => {
+        const localMachine = localMachines.find(
+          (machine: any) => machine.id === mockMachine.id
+        );
+        return localMachine || mockMachine;
+      });
+    } else {
+      this.machines = machinesMock;
+    }
+  }
 
   test(machine: any) {
     console.log(machine);

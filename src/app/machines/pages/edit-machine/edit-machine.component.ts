@@ -39,7 +39,11 @@ export class EditMachineComponent implements OnInit {
   }
 
   loadMachineData() {
-    this.machine = machinesMock.find((m) => m.id === this.machineId);
+    const localMachines = JSON.parse(localStorage.getItem('machines') || '[]');
+    this.machine =
+      localMachines.find((m: any) => m.id === this.machineId) ||
+      machinesMock.find((m) => m.id === this.machineId);
+
     if (this.machine) {
       this.createForm();
     } else {
@@ -63,6 +67,24 @@ export class EditMachineComponent implements OnInit {
 
   onSubmit() {
     if (this.machineForm.valid) {
+      const updatedMachine = {
+        id: this.machineId,
+        ...this.machineForm.value,
+      };
+
+      const localMachines = JSON.parse(
+        localStorage.getItem('machines') || '[]'
+      );
+      const index = localMachines.findIndex(
+        (machine: any) => machine.id === this.machineId
+      );
+      if (index !== -1) {
+        localMachines[index] = updatedMachine;
+      } else {
+        localMachines.push(updatedMachine);
+      }
+      localStorage.setItem('machines', JSON.stringify(localMachines));
+
       console.log('Formulario enviado', this.machineForm.value);
       this.router.navigate(['/machines/list']);
     }
