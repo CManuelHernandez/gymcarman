@@ -13,17 +13,14 @@ export class EditMachineComponent implements OnInit {
   machine: any;
   machineForm!: FormGroup;
 
-  seasonOptions = ['2021-01-01', '2021-02-01', '2021-03-01', '2021-04-01'];
   mainWeightOptions = [
     5, 12.5, 20.0, 27.5, 35.0, 42.5, 50.0, 57.5, 65.0, 72.5, 80.0, 87.5, 95.0,
     102.5, 110.0, 117.5, 125.0, 132.5, 140.0, 147.5, 155.0, 162.5, 170.0, 177.5,
     185.0, 192.5,
   ];
   extraWeightOptions = [0, 2.5, 5.0];
-  seriesOptions = [1, 2, 3, 4, 5];
-  repetitionOptions = [5, 10, 15, 20, 25, 30];
   restOptions = [30, 60, 90, 120];
-  feedbackOptions = ['bien', 'mal', 'regular', 'excelente'];
+  feedbackOptions = ['Mantener peso', 'Subir peso', 'Bajar peso'];
 
   constructor(
     private fb: FormBuilder,
@@ -32,6 +29,7 @@ export class EditMachineComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.machineForm = this.fb.group({});
     this.route.params.subscribe((params) => {
       this.machineId = +params['id'];
       this.loadMachineData();
@@ -45,6 +43,10 @@ export class EditMachineComponent implements OnInit {
       machinesMock.find((m) => m.id === this.machineId);
 
     if (this.machine) {
+      // Asegúraarse de que todos los datos existen antes de crear el formulario
+      this.machine.machineRutineData = this.machine.machineRutineData || {};
+      this.machine.machineRutineData.weight = this.machine.machineRutineData
+        .weight || { mainWeight: 5, extraWeight: 0 };
       this.createForm();
     } else {
       console.error('Máquina no encontrada');
@@ -54,26 +56,36 @@ export class EditMachineComponent implements OnInit {
   createForm() {
     this.machineForm = this.fb.group({
       lastSeason: [
-        this.machine.machineRutineData.lastSeason,
+        this.machine.machineRutineData.lastSeason || 'Sin session',
         Validators.required,
       ],
       weight: this.fb.group({
         mainWeight: [
-          this.machine.machineRutineData.weight.mainWeight,
+          this.machine.machineRutineData.weight.mainWeight || 5,
           Validators.required,
         ],
         extraWeight: [
-          this.machine.machineRutineData.weight.extraWeight,
+          this.machine.machineRutineData.weight.extraWeight || 0,
           Validators.required,
         ],
       }),
-      series: [this.machine.machineRutineData.series, Validators.required],
+      series: [
+        this.machine.machineRutineData.series || 1,
+        [Validators.required, Validators.min(0)],
+      ],
       repetitions: [
-        this.machine.machineRutineData.repetitions,
+        this.machine.machineRutineData.repetitions || 5,
+        [Validators.required, Validators.min(0)],
+      ],
+
+      restTime: [
+        this.machine.machineRutineData.restTime || 30,
         Validators.required,
       ],
-      restTime: [this.machine.machineRutineData.restTime, Validators.required],
-      feedback: [this.machine.machineRutineData.feedback, Validators.required],
+      feedback: [
+        this.machine.machineRutineData.feedback || 'mantener peso',
+        Validators.required,
+      ],
       image: [{ value: this.machine.image, disabled: true }],
     });
   }
@@ -85,6 +97,7 @@ export class EditMachineComponent implements OnInit {
 
       const updatedMachine = {
         ...this.machine,
+        everDone: true,
         machineRutineData: {
           ...this.machine.machineRutineData,
           ...this.machineForm.value,
@@ -106,7 +119,6 @@ export class EditMachineComponent implements OnInit {
         updatedMachine
       );
 
-      // Redirige a la lista de máquinas
       this.router.navigate(['/machines/list']);
     }
   }

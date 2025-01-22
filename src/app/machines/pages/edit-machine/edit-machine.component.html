@@ -30,18 +30,20 @@
 
       <p>
         <label for="series">Series:</label>
-        <p-dropdown
+        <p-inputNumber
           formControlName="series"
-          [options]="seriesOptions"
-        ></p-dropdown>
+          [min]="0"
+          required
+        ></p-inputNumber>
       </p>
 
       <p>
-        <label for="repetitions">Repeticiones:</label>
-        <p-dropdown
+        <label for="series">Repeticiones:</label>
+        <p-inputNumber
           formControlName="repetitions"
-          [options]="repetitionOptions"
-        ></p-dropdown>
+          [min]="0"
+          required
+        ></p-inputNumber>
       </p>
 
       <p>
