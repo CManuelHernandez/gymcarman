@@ -15,11 +15,15 @@
           <label for="mainWeight">Peso principal:</label>
           <p-dropdown
             formControlName="mainWeight"
-            [options]="mainWeightOptions"
+            [options]="
+              machine.machineType === 'white'
+                ? mainWeightWitheOptions
+                : mainWeightOptions
+            "
           ></p-dropdown>
         </p>
 
-        <p>
+        <p *ngIf="!machine.machineType || machine.machineType !== 'white'">
           <label for="extraWeight">Peso adicional:</label>
           <p-dropdown
             formControlName="extraWeight"
