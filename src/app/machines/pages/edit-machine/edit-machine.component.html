@@ -1,6 +1,9 @@
 <form [formGroup]="machineForm" (ngSubmit)="onSubmit()">
   <div class="card-container">
-    <p-card class="card">
+    <p-card
+      class="card"
+      [style]="machine.machineType === 'black' ? { background: '#d8d6d5' } : {}"
+    >
       <ng-template pTemplate="header">
         <img alt="Card" [src]="machine.image" />
       </ng-template>
