@@ -2,7 +2,11 @@
   <p-card
     *ngFor="let machine of machines"
     class="card"
-    [style]="machine.machineType === 'black' ? { background: '#d8d6d5' } : {}"
+    [style]="
+      machine.machineType === 'black'
+        ? { background: '#d8d6d5', color: '#000000' }
+        : { color: '#000000' }
+    "
   >
     <ng-template pTemplate="header">
       <img alt="Card" [src]="machine.image" />
