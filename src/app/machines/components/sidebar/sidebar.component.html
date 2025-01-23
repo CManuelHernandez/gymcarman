@@ -1,11 +1,88 @@
 <p-sidebar [(visible)]="sidebarVisible">
-  <h3>Filtros</h3>
-  <p>Lorem ipsum dolor sit amet...</p>
+  <div class="filter-actions">
+    <p-button
+      label="Aplicar Filtros"
+      (onClick)="applyFilters()"
+      class="mr-2"
+    ></p-button>
+    <p-button
+      label="Reiniciar Filtros"
+      (onClick)="resetFilters()"
+      severity="secondary"
+    ></p-button>
+  </div>
+
+  <div class="filter-inputs">
+    <div class="p-field">
+      <label>Ejercicio</label>
+      <input
+        pInputText
+        [(ngModel)]="filters.exercise"
+        placeholder="Filtrar por ejercicio"
+      />
+    </div>
+
+    <div class="p-field">
+      <label>Tipo de Máquina</label>
+      <p-dropdown
+        [options]="machineTypeOptions"
+        [(ngModel)]="filters.machineType"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleccionar"
+      ></p-dropdown>
+    </div>
+
+    <div class="p-field">
+      <label>Realizado</label>
+      <p-dropdown
+        [options]="everDoneOptions"
+        [(ngModel)]="filters.everDone"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleccionar"
+      ></p-dropdown>
+    </div>
+
+    <div class="p-field">
+      <label>Última Sesión</label>
+      <p-dropdown
+        [options]="lastSeasonOptions"
+        [(ngModel)]="filters.lastSeasonSort"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Ordenar"
+      ></p-dropdown>
+    </div>
+
+    <div class="p-field">
+      <label>Peso</label>
+      <p-dropdown
+        [options]="weightOptions"
+        [(ngModel)]="filters.weightSort"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Ordenar"
+      ></p-dropdown>
+    </div>
+
+    <div class="p-field">
+      <label>Feedback</label>
+      <p-dropdown
+        [options]="feedbackOptions"
+        [(ngModel)]="filters.feedback"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleccionar"
+      ></p-dropdown>
+    </div>
+  </div>
 </p-sidebar>
+
 <p-button
   (onClick)="sidebarVisible = true"
   [raised]="true"
-  [outlined]="true"
+  [outlined]="!hasActiveFilters"
   [rounded]="true"
   icon="pi pi-filter"
 />
