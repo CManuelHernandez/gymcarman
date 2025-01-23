@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environments } from '../../environments/environments';
 
 export interface MachineFilter {
   exercise?: string;
@@ -16,8 +17,17 @@ export interface MachineFilter {
 export class MachineFilterService {
   private _filters = new BehaviorSubject<MachineFilter>({});
   private _originalMachines: any[] = [];
+  private FILTER_STORAGE_KEY = environments.FILTER_STORAGE_KEY;
 
   filters$ = this._filters.asObservable();
+
+  constructor() {
+    // Load filters from sessionStorage on service initialization
+    const storedFilters = sessionStorage.getItem(this.FILTER_STORAGE_KEY);
+    if (storedFilters) {
+      this._filters.next(JSON.parse(storedFilters));
+    }
+  }
 
   setOriginalMachines(machines: any[]) {
     this._originalMachines = machines;
@@ -25,6 +35,7 @@ export class MachineFilterService {
 
   updateFilters(filters: MachineFilter) {
     this._filters.next(filters);
+    sessionStorage.setItem(this.FILTER_STORAGE_KEY, JSON.stringify(filters));
   }
 
   applyFilters(): any[] {
@@ -93,5 +104,6 @@ export class MachineFilterService {
 
   resetFilters() {
     this._filters.next({});
+    sessionStorage.removeItem(this.FILTER_STORAGE_KEY);
   }
 }
