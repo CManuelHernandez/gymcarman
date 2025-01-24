@@ -61,7 +61,6 @@ export class SidebarComponent {
   resetFilters() {
     this.filters = {};
     this.filterService.resetFilters();
-    this.sidebarVisible = false;
   }
 
   ngOnDestroy() {

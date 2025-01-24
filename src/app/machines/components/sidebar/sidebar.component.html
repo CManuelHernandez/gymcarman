@@ -1,14 +1,19 @@
 <p-sidebar [(visible)]="sidebarVisible">
   <div class="filter-actions">
     <p-button
-      label="Aplicar Filtros"
+      icon="pi pi-filter-fill"
+      [raised]="true"
+      [rounded]="true"
+      [outlined]="!hasActiveFilters"
+      severity="success"
       (onClick)="applyFilters()"
-      class="mr-2"
     ></p-button>
     <p-button
-      label="Reiniciar Filtros"
+      icon="pi pi-filter-slash"
+      [raised]="true"
+      [rounded]="true"
       (onClick)="resetFilters()"
-      severity="secondary"
+      severity="danger"
     ></p-button>
   </div>
 
