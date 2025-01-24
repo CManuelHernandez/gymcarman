@@ -10,7 +10,22 @@
       "
     >
       <ng-template pTemplate="header">
-        <img alt="Card" [src]="machine.image" />
+        <!-- <img alt="Card" [src]="machine.image.primary" /> -->
+        <p-carousel
+          [value]="machine.processedImages"
+          [numVisible]="1"
+          [numScroll]="1"
+          [circular]="true"
+          [showIndicators]="false"
+        >
+          <ng-template let-image pTemplate="item">
+            <img
+              [src]="image.src"
+              [alt]="machine.exercise"
+              [style]="{ width: image.width, height: image.height }"
+            />
+          </ng-template>
+        </p-carousel>
       </ng-template>
       <ng-template pTemplate="title">{{
         machine.exercise | uppercase

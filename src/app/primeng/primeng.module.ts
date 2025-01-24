@@ -17,6 +17,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { DialogModule } from 'primeng/dialog';
 import { FieldsetModule } from 'primeng/fieldset';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [],
@@ -37,6 +38,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DialogModule,
     FieldsetModule,
     InputNumberModule,
+    CarouselModule,
   ],
   providers: [MessageService, ConfirmationService],
 })

@@ -11,7 +11,10 @@ export const machinesMock = [
   {
     id: 1,
     exercise: 'press de pecho',
-    image: 'assets/machines/pressPecho.png',
+    image: {
+      primary: 'assets/machines/pressPecho.png',
+      secondary: 'assets/machines/pressPecho2.png',
+    },
     machineType: 'black',
     everDone: false,
     machineRutineData: {
@@ -26,7 +29,10 @@ export const machinesMock = [
   {
     id: 2,
     exercise: 'remo',
-    image: 'assets/machines/remo.png',
+    image: {
+      primary: 'assets/machines/remo.png',
+      secondary: 'assets/machines/remo2.png',
+    },
     machineType: 'black',
     everDone: false,
     machineRutineData: {
@@ -41,7 +47,10 @@ export const machinesMock = [
   {
     id: 3,
     exercise: 'biceps',
-    image: 'assets/machines/bicepsWhite.png',
+    image: {
+      primary: 'assets/machines/bicepsWhite.png',
+      secondary: 'assets/machines/bicepsWhite2.png',
+    },
     machineType: 'white',
     everDone: false,
     machineRutineData: {

@@ -34,12 +34,30 @@ export class ListPageComponent implements OnInit, OnDestroy {
             const localMachine = localMachines.find(
               (machine: any) => machine.id === mockMachine.id
             );
-            return localMachine || mockMachine;
+            return this.preprocessMachine(localMachine || mockMachine);
           })
-        : machinesMock;
+        : machinesMock.map((machine) => this.preprocessMachine(machine));
 
     this.filterService.setOriginalMachines(machines);
     this.machines = machines;
+  }
+
+  preprocessMachine(machine: any) {
+    return {
+      ...machine,
+      processedImages: [
+        this.normalizeImageSrc(machine.image.primary),
+        this.normalizeImageSrc(machine.image.secondary),
+      ].map((src) => ({
+        src: src,
+        width: '100%',
+        height: '25vh',
+      })),
+    };
+  }
+
+  normalizeImageSrc(src: string): string {
+    return src;
   }
 
   applyFilters() {

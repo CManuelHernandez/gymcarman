@@ -9,15 +9,11 @@
   img {
     border-radius: 3% 3% 0 0;
     width: 100%;
+    height: 25vh;
   }
 }
 
 .footer-container {
   display: flex;
   justify-content: space-around;
-}
-
-.template {
-  background-color: yellow;
-  color: pink;
 }
