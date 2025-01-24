@@ -11,7 +11,7 @@ export const machinesMock = [
   {
     id: 1,
     exercise: 'press de pecho',
-    image: 'https://primefaces.org/cdn/primeng/images/card-ng.jpg',
+    image: 'assets/machines/pressPecho.png',
     machineType: 'black',
     everDone: false,
     machineRutineData: {
@@ -26,7 +26,7 @@ export const machinesMock = [
   {
     id: 2,
     exercise: 'remo',
-    image: 'https://primefaces.org/cdn/primeng/images/card-ng.jpg',
+    image: 'assets/machines/remo.png',
     machineType: 'black',
     everDone: false,
     machineRutineData: {
@@ -41,7 +41,7 @@ export const machinesMock = [
   {
     id: 3,
     exercise: 'biceps',
-    image: 'https://primefaces.org/cdn/primeng/images/card-ng.jpg',
+    image: 'assets/machines/bicepsWhite.png',
     machineType: 'white',
     everDone: false,
     machineRutineData: {
