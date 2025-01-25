@@ -1,5 +1,17 @@
 .button-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+  padding: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button-container.list-page-active {
   display: flex;
-  margin-top: 1%;
+  align-items: center;
   justify-content: space-around;
 }
