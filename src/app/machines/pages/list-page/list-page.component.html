@@ -73,4 +73,14 @@
   <ng-template #noData>
     <p>Sin datos</p>
   </ng-template>
+  <p-scrollTop
+    styleClass="custom-scroll-top"
+    [style]="{
+      position: 'fixed',
+      top: '1.5vh',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      zIndex: '1000'
+    }"
+  />
 </div>
