@@ -1,86 +1,88 @@
-<div class="card-container">
-  <ng-container *ngIf="machines.length > 0; else noData">
-    <p-card
-      *ngFor="let machine of machines"
-      class="card"
-      [style]="
-        machine.machineType === 'black'
-          ? { background: '#d8d6d5', color: '#000000' }
-          : { color: '#000000' }
-      "
-    >
-      <ng-template pTemplate="header">
-        <p-carousel
-          [value]="machine.processedImages"
-          [numVisible]="1"
-          [numScroll]="1"
-          [circular]="true"
-          [showIndicators]="false"
-        >
-          <ng-template let-image pTemplate="item">
-            <img
-              [src]="image.src"
-              [alt]="machine.exercise"
-              [style]="{ width: image.width, height: image.height }"
-            />
+<div class="component-wrapper">
+  <div class="card-container">
+    <ng-container *ngIf="machines.length > 0; else noData">
+      <p-card
+        *ngFor="let machine of machines"
+        class="card"
+        [style]="
+          machine.machineType === 'black'
+            ? { background: '#d8d6d5', color: '#000000' }
+            : { color: '#000000' }
+        "
+      >
+        <ng-template pTemplate="header">
+          <p-carousel
+            [value]="machine.processedImages"
+            [numVisible]="1"
+            [numScroll]="1"
+            [circular]="true"
+            [showIndicators]="false"
+          >
+            <ng-template let-image pTemplate="item">
+              <img
+                [src]="image.src"
+                [alt]="machine.exercise"
+                [style]="{ width: image.width, height: image.height }"
+              />
+            </ng-template>
+          </p-carousel>
+        </ng-template>
+        <ng-template pTemplate="title">{{
+          machine.exercise | uppercase
+        }}</ng-template>
+        <ng-template [ngIf]="machine.everDone" [ngIfElse]="noRutine">
+          <p>Última sesión: {{ machine.machineRutineData.lastSeason }}</p>
+          <p>
+            Peso:
+            {{
+              machine.machineRutineData.weight.mainWeight +
+                machine.machineRutineData.weight.extraWeight
+            }}
+            Kg
+          </p>
+          <p>Series: {{ machine.machineRutineData.series }}</p>
+          <p>Repetición: {{ machine.machineRutineData.repetitions }}</p>
+          <p>Descanso: {{ machine.machineRutineData.restTime }}</p>
+          <p>Feedback: {{ machine.machineRutineData.feedback }}</p>
+          <ng-template pTemplate="footer">
+            <div class="footer-container">
+              <p-button
+                label="Actualizar rutina"
+                [routerLink]="['/machines/edit', machine.id]"
+                class="w-full"
+                styleClass="w-full"
+              />
+            </div>
           </ng-template>
-        </p-carousel>
-      </ng-template>
-      <ng-template pTemplate="title">{{
-        machine.exercise | uppercase
-      }}</ng-template>
-      <ng-template [ngIf]="machine.everDone" [ngIfElse]="noRutine">
-        <p>Última sesión: {{ machine.machineRutineData.lastSeason }}</p>
-        <p>
-          Peso:
-          {{
-            machine.machineRutineData.weight.mainWeight +
-              machine.machineRutineData.weight.extraWeight
-          }}
-          Kg
-        </p>
-        <p>Series: {{ machine.machineRutineData.series }}</p>
-        <p>Repetición: {{ machine.machineRutineData.repetitions }}</p>
-        <p>Descanso: {{ machine.machineRutineData.restTime }}</p>
-        <p>Feedback: {{ machine.machineRutineData.feedback }}</p>
-        <ng-template pTemplate="footer">
-          <div class="footer-container">
-            <p-button
-              label="Actualizar rutina"
-              [routerLink]="['/machines/edit', machine.id]"
-              class="w-full"
-              styleClass="w-full"
-            />
-          </div>
         </ng-template>
-      </ng-template>
 
-      <ng-template #noRutine>
-        <p>Maquina aun sin rutina</p>
-        <ng-template pTemplate="footer">
-          <div class="footer-container">
-            <p-button
-              label="Iniciar rutina"
-              [routerLink]="['/machines/edit', machine.id]"
-              class="w-full"
-              styleClass="w-full"
-            />
-          </div>
+        <ng-template #noRutine>
+          <p>Maquina aun sin rutina</p>
+          <ng-template pTemplate="footer">
+            <div class="footer-container">
+              <p-button
+                label="Iniciar rutina"
+                [routerLink]="['/machines/edit', machine.id]"
+                class="w-full"
+                styleClass="w-full"
+              />
+            </div>
+          </ng-template>
         </ng-template>
-      </ng-template>
-    </p-card>
-  </ng-container>
-  <ng-template #noData>
-    <p>Sin datos</p>
-  </ng-template>
-  <p-scrollTop
-    styleClass="custom-scroll-top"
-    [style]="{
-      position: 'fixed',
-      top: '1.5vh',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      zIndex: '1000'
-    }"
-  />
+      </p-card>
+    </ng-container>
+    <ng-template #noData>
+      <p>Sin datos</p>
+    </ng-template>
+    <p-scrollTop
+      styleClass="custom-scroll-top"
+      [style]="{
+        position: 'fixed',
+        top: '1.5vh',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: '1000'
+      }"
+    />
+  </div>
 </div>
