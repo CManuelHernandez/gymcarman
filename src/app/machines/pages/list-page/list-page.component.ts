@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { machinesMock } from './machinesMock';
 import { MachineFilterService } from '../../services/machinesFilter.service';
 import { Subscription } from 'rxjs';
+import { SidebarStateService } from '../../services/sidebarState.service';
 
 @Component({
   selector: 'app-list-page',
@@ -10,9 +11,14 @@ import { Subscription } from 'rxjs';
 })
 export class ListPageComponent implements OnInit, OnDestroy {
   machines: any[] = [];
+  showScrollTop = true;
   private filterSubscription!: Subscription;
+  private sidebarSubscription!: Subscription;
 
-  constructor(private filterService: MachineFilterService) {}
+  constructor(
+    private filterService: MachineFilterService,
+    private sidebarStateService: SidebarStateService
+  ) {}
 
   ngOnInit() {
     this.loadMachines();
@@ -20,10 +26,12 @@ export class ListPageComponent implements OnInit, OnDestroy {
     this.filterSubscription = this.filterService.filters$.subscribe(() => {
       this.applyFilters();
     });
-  }
 
-  ngOnDestroy() {
-    this.filterSubscription.unsubscribe();
+    this.sidebarSubscription = this.sidebarStateService.isVisible$.subscribe(
+      (isVisible) => {
+        this.showScrollTop = !isVisible;
+      }
+    );
   }
 
   loadMachines() {
@@ -62,5 +70,10 @@ export class ListPageComponent implements OnInit, OnDestroy {
 
   applyFilters() {
     this.machines = this.filterService.applyFilters();
+  }
+
+  ngOnDestroy() {
+    this.filterSubscription.unsubscribe();
+    this.sidebarSubscription.unsubscribe();
   }
 }

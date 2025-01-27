@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MachineFilterService } from '../../services/machinesFilter.service';
 import { Subscription } from 'rxjs';
+import { SidebarStateService } from '../../services/sidebarState.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +9,6 @@ import { Subscription } from 'rxjs';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  sidebarVisible: boolean = false;
   hasActiveFilters: boolean = false;
   private filterSubscription!: Subscription;
 
@@ -51,7 +51,20 @@ export class SidebarComponent {
     { label: 'Piernas', value: 'legs' },
   ];
 
-  constructor(private filterService: MachineFilterService) {}
+  constructor(
+    private filterService: MachineFilterService,
+    private sidebarStateService: SidebarStateService
+  ) {}
+
+  @Input()
+  set sidebarVisible(value: boolean) {
+    this._sidebarVisible = value;
+    this.sidebarStateService.setSidebarVisibility(value);
+  }
+  get sidebarVisible(): boolean {
+    return this._sidebarVisible;
+  }
+  private _sidebarVisible = false;
 
   ngOnInit() {
     this.filterSubscription = this.filterService.filters$.subscribe(
