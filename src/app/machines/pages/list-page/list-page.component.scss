@@ -10,8 +10,47 @@
     .card {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
       transition: box-shadow 0.3s ease;
-      /* border: solid 3px red;
-      border-radius: 3%; */
+      border-width: 3px;
+      border-style: solid;
+      border-radius: 3%;
+
+      // MuscularGroup colors
+      &.muscular-group-chest {
+        border-color: #ff6b6b;
+      }
+
+      &.muscular-group-back {
+        border-color: #4ecdc4;
+      }
+
+      &.muscular-group-biceps {
+        border-color: #45b7d1;
+      }
+
+      &.muscular-group-triceps {
+        border-color: #96ceb4;
+      }
+
+      &.muscular-group-abs {
+        border-color: #ffbe0b;
+      }
+
+      &.muscular-group-shoulders {
+        border-color: #ff9f1c;
+      }
+
+      &.muscular-group-glutes {
+        border-color: #ff449f;
+      }
+
+      &.muscular-group-legs {
+        border-color: #845ec2;
+      }
+
+      &:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
+          0 12px 40px rgba(0, 0, 0, 0.2);
+      }
 
       &:hover {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),

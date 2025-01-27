@@ -4,6 +4,7 @@
       <p-card
         *ngFor="let machine of machines"
         class="card"
+        [ngClass]="'muscular-group-' + machine.muscularGroup"
         [style]="
           machine.machineType === 'black'
             ? { background: '#d8d6d5', color: '#000000' }
