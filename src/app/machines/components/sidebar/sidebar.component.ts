@@ -40,6 +40,17 @@ export class SidebarComponent {
     { label: 'Blanco', value: 'white' },
   ];
 
+  muscularGroupsOptions = [
+    { label: 'Pecho', value: 'chest' },
+    { label: 'Espalda', value: 'back' },
+    { label: 'Bíceps', value: 'biceps' },
+    { label: 'Tríceps', value: 'triceps' },
+    { label: 'Abdominales', value: 'abs' },
+    { label: 'Hombros', value: 'shoulders' },
+    { label: 'Glúteos', value: 'glutes' },
+    { label: 'Piernas', value: 'legs' },
+  ];
+
   constructor(private filterService: MachineFilterService) {}
 
   ngOnInit() {

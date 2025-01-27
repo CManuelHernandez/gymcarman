@@ -28,6 +28,17 @@
     </div>
 
     <div class="p-field">
+      <label>Grupo Musuclar</label>
+      <p-dropdown
+        [options]="muscularGroupsOptions"
+        [(ngModel)]="filters.muscularGroup"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Seleccionar"
+      ></p-dropdown>
+    </div>
+
+    <div class="p-field">
       <label>Tipo de Máquina</label>
       <p-dropdown
         [options]="machineTypeOptions"

@@ -5,6 +5,15 @@ import { environments } from '../../environments/environments';
 export interface MachineFilter {
   exercise?: string;
   everDone?: boolean;
+  muscularGroup?:
+    | 'chest'
+    | 'back'
+    | 'biceps'
+    | 'triceps'
+    | 'abs'
+    | 'shoulders'
+    | 'glutes'
+    | 'legs';
   machineType?: 'black' | 'white';
   lastSeasonSort?: 'asc' | 'desc';
   weightSort?: 'asc' | 'desc';
@@ -55,6 +64,13 @@ export class MachineFilterService {
     if (currentFilters.machineType) {
       filteredMachines = filteredMachines.filter(
         (machine) => machine.machineType === currentFilters.machineType
+      );
+    }
+
+    // Muscular Group filter
+    if (currentFilters.muscularGroup) {
+      filteredMachines = filteredMachines.filter(
+        (machine) => machine.muscularGroup === currentFilters.muscularGroup
       );
     }
 
