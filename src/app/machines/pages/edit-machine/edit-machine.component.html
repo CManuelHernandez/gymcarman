@@ -40,21 +40,19 @@
       </div>
 
       <p>
-        <label for="series">Series:</label>
-        <p-inputNumber
+        <label for="restTime">Series:</label>
+        <p-dropdown
           formControlName="series"
-          [min]="0"
-          required
-        ></p-inputNumber>
+          [options]="seriesOptions"
+        ></p-dropdown>
       </p>
 
       <p>
-        <label for="series">Repeticiones:</label>
-        <p-inputNumber
+        <label for="restTime">Repeticiones:</label>
+        <p-dropdown
           formControlName="repetitions"
-          [min]="0"
-          required
-        ></p-inputNumber>
+          [options]="repetitionOptions"
+        ></p-dropdown>
       </p>
 
       <p>

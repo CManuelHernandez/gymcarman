@@ -49,6 +49,13 @@ export const EXTRA_WEIGHT_OPTIONS = [
   { label: '5 Kg', value: 5.0 },
 ];
 
+export const SERIES_OPTIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+export const REPETITIONS_OPTIONS = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+  23, 24, 25, 26, 27, 28, 29, 30,
+];
+
 export const REST_OPTIONS = [30, 60, 90, 120];
 
 export const FEEDBACK_OPTIONS = ['Mantener peso', 'Subir peso', 'Bajar peso'];

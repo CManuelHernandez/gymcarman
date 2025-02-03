@@ -8,6 +8,8 @@ import {
   EXTRA_WEIGHT_OPTIONS,
   REST_OPTIONS,
   FEEDBACK_OPTIONS,
+  REPETITIONS_OPTIONS,
+  SERIES_OPTIONS,
 } from './machine-options.constants';
 
 @Component({
@@ -25,6 +27,8 @@ export class EditMachineComponent implements OnInit {
   extraWeightOptions = EXTRA_WEIGHT_OPTIONS;
   restOptions = REST_OPTIONS;
   feedbackOptions = FEEDBACK_OPTIONS;
+  seriesOptions = SERIES_OPTIONS;
+  repetitionOptions = REPETITIONS_OPTIONS;
 
   constructor(
     private fb: FormBuilder,
