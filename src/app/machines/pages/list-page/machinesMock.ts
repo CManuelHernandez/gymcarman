@@ -85,7 +85,7 @@ export const machinesMock = [
     exercise: 'elevación lateral',
     image: {
       primary: 'assets/machines/levaciónLateral.png',
-      secondary: 'assets/machines/pantorrilla2.png',
+      secondary: 'assets/machines/levaciónLateral2.png',
     },
     machineType: 'black',
     muscularGroup: 'shoulders',
